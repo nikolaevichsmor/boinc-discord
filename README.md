@@ -3,6 +3,13 @@
 Real-time Discord Rich Presence (RPC) integration for **ODLK** BOINC tasks (diagonal Latin squares 10×10).
 Displays live computation progress, elapsed time, total completed Latin square tasks count, and project links directly on your Discord profile.
 
+[![Tests](https://github.com/nikolaevichsmor/odlk1-discord/actions/workflows/tests.yml/badge.svg)](https://github.com/nikolaevichsmor/odlk1-discord/actions/workflows/tests.yml)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Discord Rich Presence](https://img.shields.io/badge/Discord-Rich%20Presence-5865F2.svg)](https://discord.com/)
+[![BOINC](https://img.shields.io/badge/BOINC-ODLK1-005086.svg)](https://boinc.multi-pool.info/latinsquares/)
+[![Platform](https://img.shields.io/badge/platform-Windows-0078D6.svg)](https://www.microsoft.com/windows)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ![ODLK1 Discord RPC Preview](docs/screenshot.png)
 
 ## Quick start
