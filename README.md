@@ -42,7 +42,8 @@ ODLK1 Voxel (optional) ------------+ (shared tray IPC)
 
 | Field | Content | Example |
 |---|---|---|
-| **Large Image** | ODLK1 Latin square cube logo | App icon |
+| **Large Image** | Animated 10×10 ODLK1 Latin square matrix (`GIF`) | `ODLK1 Latin Squares` |
+| **Small Image** | Animated BOINC corner badge (`GIF`) | `BOINC` |
 | **Details** | Activity description | `Searching 10x10 Latin Squares` |
 | **State** | Progress & total completed count | `42.7% (1 234 tasks completed)` |
 | **Timestamp** | Elapsed computation time | `01:23:45 elapsed` |
