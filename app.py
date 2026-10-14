@@ -51,8 +51,10 @@ def main():
     # Prevent running duplicate instances of Discord RPC service
     mutex = None
     if sys.platform == "win32":
-        mutex = ctypes.windll.kernel32.CreateMutexW(None, True, "Local\\ODLK1_Discord_Service_Singleton")
-        if ctypes.windll.kernel32.GetLastError() == 183:  # ERROR_ALREADY_EXISTS
+        k32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        ctypes.set_last_error(0)
+        mutex = k32.CreateMutexW(None, True, "Local\\ODLK1_Discord_Service_Singleton")
+        if ctypes.get_last_error() == 183:  # ERROR_ALREADY_EXISTS
             return
 
     service = OdlkPresenceService(
