@@ -15,6 +15,8 @@ import time
 import uuid
 
 DEFAULT_CLIENT_ID = "1559236488305311916"
+DEFAULT_LARGE_IMAGE = "https://raw.githubusercontent.com/nikolaevichsmor/odlk1-discord/main/docs/odlk1_matrix_v2.gif"
+DEFAULT_SMALL_IMAGE = "https://raw.githubusercontent.com/nikolaevichsmor/odlk1-discord/main/docs/boinc_badge.gif"
 CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "discord_config.json")
 
 
@@ -24,8 +26,10 @@ def load_config():
         "update_interval": 4.5,
         "boinc_data": None,
         "boinccmd": None,
-        "large_image": "odlk1_logo_1024",
-        "large_text": "ODLK1 Latin Squares"
+        "large_image": DEFAULT_LARGE_IMAGE,
+        "large_text": "ODLK1 Latin Squares",
+        "small_image": DEFAULT_SMALL_IMAGE,
+        "small_text": "BOINC"
     }
     if os.path.isfile(CONFIG_FILE):
         try:
@@ -232,8 +236,10 @@ class OdlkPresenceService:
         self.data_dir = boinc_data or cfg.get("boinc_data") or self._find_boinc_data()
         self.boinccmd = boinccmd or cfg.get("boinccmd") or self._find_boinccmd()
         self.job_log_path = self._find_job_log()
-        self.large_image = cfg.get("large_image", "odlk1_logo_1024")
+        self.large_image = cfg.get("large_image", DEFAULT_LARGE_IMAGE)
         self.large_text = cfg.get("large_text", "ODLK1 Latin Squares")
+        self.small_image = cfg.get("small_image", DEFAULT_SMALL_IMAGE)
+        self.small_text = cfg.get("small_text", "BOINC")
 
     def _find_boinc_data(self):
         for candidate in [r"C:\Other\data.BOINC", r"C:\ProgramData\BOINC", r"C:\Other\BOINC"]:
@@ -409,11 +415,15 @@ class OdlkPresenceService:
                 ]
             }
 
+            assets = {}
             if self.large_image:
-                activity["assets"] = {
-                    "large_image": self.large_image,
-                    "large_text": self.large_text
-                }
+                assets["large_image"] = self.large_image
+                assets["large_text"] = self.large_text
+            if self.small_image:
+                assets["small_image"] = self.small_image
+                assets["small_text"] = self.small_text
+            if assets:
+                activity["assets"] = assets
 
             success = self.ipc.send_activity(activity)
             self.last_update = time.time()
