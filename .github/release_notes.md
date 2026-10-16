@@ -1,26 +1,25 @@
-### Discord Rich Presence for BOINC ODLK Tasks
+### Multi-Project Discord Rich Presence for BOINC
 
-Real-time Discord Rich Presence (RPC) integration for BOINC **ODLK** computations (searching for diagonal Latin squares of order 10). Displays live task progress, elapsed time, total completed tasks, and direct project links on your Discord profile.
+Real-time Discord Rich Presence (RPC) integration for **BOINC** distributed computing projects. Automatically cycles active BOINC projects on your Discord status, displaying live workunit progress, elapsed computation time, total completed tasks count, animated project artwork, and direct project links.
 
 ---
 
 ### Highlights
 
-- **Zero External Dependencies**: Direct communication with Discord desktop client via Windows Named Pipes (`\\.\pipe\discord-ipc-0..9`). No `pypresence` or third-party pip packages required.
-- **Animated Live Matrix & BOINC Badge**: Displays a live animated 10×10 Latin square permutation matrix (`large_image`) with a rotating BOINC corner badge (`small_image`).
-- **Continuous Workunit Tracking**: Automatically targets the workunit with the lowest progress and tracks it through to 100% completion before switching to the next task.
-- **Full Telemetry**: Displays percentage progress, formatted total completed Latin squares task count, elapsed computation timer, and interactive link buttons.
-- **Native System Tray Synergy**: Automatically detects and coordinates with [odlk1-voxel](https://github.com/nikolaevichsmor/odlk1-voxel) (the 3D visualizer) via local IPC (`SO_EXCLUSIVEADDRUSE` + Win32 named mutex) to share a single unified Windows system tray icon with synchronized pause/resume and exit controls.
-- **Zero Overhead**: Standard read queries via `boinccmd` and BOINC job logs; no process memory injection or high CPU usage.
+- **Cyclic Multi-Project Rotation**: Automatically alternates between active BOINC projects every 18 seconds while updating progress live every 4.5 seconds.
+- **Per-Project Identity & Artwork**: Displays project-specific activity titles, custom animated GIFs, descriptions, and project links.
+- **Continuous Workunit Tracking**: Independently tracks the freshest workunit for each project all the way to 100% completion before moving to the next task.
+- **Standalone System Tray Control**: Lightweight Win32 system tray icon with live status tooltip, instant manual project switching (`Next Project Now`), project pinning, and pause/resume controls.
+- **Zero External Dependencies**: Direct communication with Discord desktop client via Windows Named Pipes (`\\.\pipe\discord-ipc-0..9`). Pure Python standard library (`pypresence` not required).
 
 ---
 
 ### Quick Start (Windows)
 
-1. Download and extract **`odlk1-discord.zip`** from the Assets below.
+1. Download and extract **`boinc-discord.zip`** from the Assets below.
 2. Run **`start_discord.bat`** *(run as administrator if BOINC is installed as a service)*.
-3. An icon appears in your Windows system tray, and your Discord status automatically updates with your active ODLK workunit progress.
+3. A BOINC icon appears in your Windows system tray, and your Discord profile automatically cycles through your active BOINC projects.
 
 ---
 
-**Requirements:** Windows, Python 3.8+ (standard library only), Discord desktop client, running ODLK tasks in BOINC.
+**Requirements:** Windows, Python 3.8+ (standard library only), Discord desktop client, running BOINC tasks.
